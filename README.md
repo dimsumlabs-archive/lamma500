@@ -10,19 +10,29 @@ There was an initial phone call with Malcolm Morris of the organization team on 
 
 The requirements were defined as follows:
 
-3 Locations, "beach" with Internet uplink, "start" and "finish" line
+3 Locations, "beach",  "start" and "finish" line
 
-There is no direct line of sight between "start" and "finish", the distance between these two is 500m. Both "start" and "finish" have line of sight to "beach", so we decided to use "beach" as the hub and uplink point to the Internet.
+There is no direct line of sight between "start" and "finish", the distance between these two is 500m. Both "start" and "finish" have line of sight to "beach", so we decided to use "beach" as the hub and uplink point to the Internet. The distance between "start" and "beach" was around 650m, between "finish" and "beach" around 150m.
 
-Stable Internet connectivity is required for sharing files with dropbox. Dropbox can sync files via the LAN, but this still requires Internet connectivity.
+Stable Internet connectivity is required for sharing files with dropbox. Dropbox can sync files via the LAN, but this still requires Internet connectivity. This was identified as potentially problematic, but no short term alternative was available.
 
-We decided to install two Ubiquiti Airgrid M5 at the beach, one Airgrid M5 at the start line, and an Ubiquiti NanoStation M5 at the finih line. The "beach" endpoints would be configured as APs, "start" and "finish" as STA (client).
+We decided to install two Ubiquiti Airgrid M5 at the beach, one Airgrid M5 at the start line, and an Ubiquiti NanoStation loco 5 at the finih line. The "beach" endpoints are be configured as APs, "start" and "finish" as STA (client).
 
-Each location would get a TP-Link WR1043ND for local WiFi access.
+The Ubiquiti products are described here:
 
-Internet connectivity would be provided using a TP-Link MR3020 3G router, connected to the WAN port of the "beach" WR1043ND.
+http://www.ubnt.com/airmax
+
+Price for the Airgrid M5 was around 70-80 USD per device, depending on the size of the grid antenna. There are two variants, a 14"x17" model with 24 dBi, and a 17"x24" model with 27 dBi. 
+
+Each location gets a TP-Link WR1043ND for local WiFi access. Access is restricted to race officials, the around 1000 visitors to the event would not be allowed into the WiFi network.
+
+Internet connectivity is be provided using a TP-Link MR3020 3G router, connected to the WAN port of the "beach" WR1043ND, using a 3G USB stick and a prepaid SIM card from CSL (one2free).
  
-Network setup for Lamma 500 2012
+The TP-Link devices are described here:
+
+
+
+Original network setup for Lamma 500 2012
 
 Device 1 (beach)
 
@@ -55,7 +65,8 @@ Make sure USB Modeswitch works with D-Link DWM-156
 
 http://www.draisberghof.de/usb_modeswitch/bb/viewtopic.php?t=817
 
-IP address (LAN): 192.168.6.1
+IP address (LAN): 192.168.6.1/24 - default gateway for entire LAN, DHCP server
+
 
 Network Camera
 
@@ -65,6 +76,7 @@ Manual:
 http://download.level1.com/level1/manual/FCS-0010_WCS-0010_UM_V2.1.pdf
 IP: 192.168.6.123
 Multicast IP: 224.2.0.1
+
 5GHz devices
 
 Host finish-beach
@@ -72,7 +84,7 @@ Ubiquiti Nanostation 5 loco
 Wireless mode: STA
 ESSID finish-beach.lamma500.com
 IP: 192.168.6.112
-login: root/relax11
+login: root
 Security: WPA2-PSK AES, PSK: l@mm@500-2012
 
 Host beach-finish
@@ -81,7 +93,7 @@ Ubiquiti Airgrid M5 11”x17”
 Airgrid M5-HP 11x14”
 MAC: 00:27:22:5a:25:56
 IP: 192.168.6.111
-Login: root/relax11
+Login: root
 Wireless mode: AP
 ESSID finish-beach.lamma500.com
 Frequency: Channel 149 (5745 MHz)
@@ -93,7 +105,7 @@ Ubiquiti Airgrid M5 17”x24”
 WLAN0 MAC00:27:22:5A:24:FF
 LAN0 MAC00:27:22:5B:24:FF
 IP: 192.168.6.101
-Login: root/relax11
+Login: root
 Wireless mode: AP
 ESSID finish-start.lamma500.com
 Frequency: Channel 165 (5825 MHz)
@@ -105,7 +117,7 @@ Ubiquiti Airgrid M5 17”x24”
 WLAN0 MAC 
 LAN0 MAC 00:27:22:56:f4:7e
 IP: 192.168.6.102
-Login: root/relax11
+Login: root
 Wireless mode: STA
 ESSID finish-start.lamma500.com
 Frequency: Channel 165 (5825 MHz)
